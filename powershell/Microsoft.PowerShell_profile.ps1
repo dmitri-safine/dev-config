@@ -9,6 +9,7 @@ Set-Alias vim nvim
 Set-Alias ll ls 
 Set-Alias g git 
 Set-Alias grep findstr
+Set-Alias bash "C:\Program Files\Git\bin\bash.exe"
 
 # Set Some Option for PSReadLine to show the history of our typed commands
 Set-PSReadLineOption -PredictionSource History 
