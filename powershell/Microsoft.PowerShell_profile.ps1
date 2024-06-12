@@ -26,3 +26,13 @@ function which ($command) {
  Select-Object -ExpandProperty Path -ErrorAction SilentlyContinue 
 } 
 
+# Utility command to add to user level PATH environment variable
+function path($value) {
+  if ($value) {
+    [System.Environment]::SetEnvironmentVariable(
+      "Path", 
+      [System.Environment]::GetEnvironmentVariable("Path", "User") + ";" + $value, "User")
+  } else {
+    [System.Environment]::GetEnvironmentVariable("Path", "User")
+  }
+}
