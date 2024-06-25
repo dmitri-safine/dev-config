@@ -2,7 +2,7 @@
 Import-Module -Name Terminal-Icons 
 
 # Initialize Oh My Posh with the theme which we chosen
-oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\unicorn.omp.json" | Invoke-Expression
+oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\takuya.omp.json" | Invoke-Expression
 
 # Set some useful Alias to shorten typing and save some key stroke
 Set-Alias vim nvim 
