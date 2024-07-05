@@ -36,3 +36,8 @@ function path($value) {
     [System.Environment]::GetEnvironmentVariable("Path", "User")
   }
 }
+
+# equivalent of linux touch command
+function touch() {
+  New-Item "$args" -ItemType File
+}
