@@ -34,10 +34,39 @@ local keys = {}
 -- activate pane selection mode with
 -- the default alphabet
 -- (labels are "a", "s", "d", "f" and so on)
+
 table.insert(keys, {
-	key = "8",
-	mods = "CTRL",
+	key = "s",
+	mods = "ALT",
 	action = act.PaneSelect,
+})
+
+-- spawn a new window
+table.insert(keys, {
+	key = "n",
+	mods = "ALT",
+	action = act.SpawnWindow,
+})
+
+-- spawn a new tab
+table.insert(keys, {
+	key = "t",
+	mods = "ALT",
+	action = act.SpawnTab("CurrentPaneDomain"),
+})
+
+-- switch to the tab on the left
+table.insert(keys, {
+	key = "[",
+	mods = "ALT",
+	action = act.ActivateTabRelative(-1),
+})
+
+-- switch to the tab on the right
+table.insert(keys, {
+	key = "]",
+	mods = "ALT",
+	action = act.ActivateTabRelative(1),
 })
 
 config.keys = keys
