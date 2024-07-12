@@ -164,6 +164,13 @@ return {
 			},
 		})
 
+		-- configure LTex Language Server
+		lspconfig["ltex"].setup({
+			capabilities = capabilities,
+			on_attach = on_attach,
+			cmd = { "ltex-ls.cmd" },
+		})
+
 		-- configure rust analyzer
 		lspconfig.rust_analyzer.setup({
 			capabilities = capabilities,
