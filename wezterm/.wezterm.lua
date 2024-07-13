@@ -69,6 +69,25 @@ table.insert(keys, {
 	action = act.ActivateTabRelative(1),
 })
 
+-- split horizontally at 30% height
+-- good for terminal commands
+-- when top pane using nvim
+table.insert(keys, {
+	key = "h",
+	mods = "ALT",
+	action = act.SplitPane({
+		direction = "Down",
+		size = { Percent = 30 },
+	}),
+})
+
+-- close current pane
+table.insert(keys, {
+	key = "x",
+	mods = "ALT",
+	action = act.CloseCurrentPane({ confirm = false }),
+})
+
 config.keys = keys
 
 -- and finally, return the configuration to wezterm
