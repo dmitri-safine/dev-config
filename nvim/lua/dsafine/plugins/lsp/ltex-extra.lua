@@ -5,7 +5,7 @@ return {
 		local cmp_nvim_lsp = require("cmp_nvim_lsp")
 		local capabilities = cmp_nvim_lsp.default_capabilities()
 		local on_attach = function(client, bufnr)
-			-- on attach options
+			require("ltex_extra").reload()
 		end
 
 		require("ltex_extra").setup({
