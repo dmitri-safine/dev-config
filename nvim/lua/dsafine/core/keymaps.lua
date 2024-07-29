@@ -9,6 +9,12 @@ local keymap = vim.keymap -- for conciseness
 -- use jk to exit insert mode
 keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
 
+-- use CTRL-hjkl to navigate in insert mode, without using arrow keys
+keymap.set("i", "<C-k>", "<C-o>gk", { desc = "Move cursor up in insert mode" })
+keymap.set("i", "<C-h>", "<Left>", { desc = "Move cursor left in insert mode" })
+keymap.set("i", "<C-l>", "<Right>", { desc = "Move cursor right in insert mode" })
+keymap.set("i", "<C-j>", "<C-o>gj", { desc = "Move cursor down in insert mode" })
+
 -- clear search highlights
 keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights" })
 
