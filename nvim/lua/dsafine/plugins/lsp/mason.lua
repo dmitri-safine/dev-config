@@ -55,6 +55,7 @@ return {
 				"pylint", -- python linter
 				"eslint_d", -- js linter
 				"csharpier", -- c# formatter
+				"netcoredbg", -- CLR debugger
 			},
 		})
 	end,
