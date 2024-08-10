@@ -2,6 +2,8 @@
 # Dev Environment Configuration 
 This is my very opinionated dev environment configuration. Proceed at you own risk.
 
+[[_TOC_]]
+
 # Windows 10/11
 These are instructions for Windows 10/11.
 
