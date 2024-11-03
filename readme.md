@@ -239,6 +239,13 @@ Add to `~/.bashrc`:
 export PATH=$PATH:$HOME/.local/bin
 ```
 
+### Install Themes
+
+```
+cd ~/.config
+git clone https://github.com/JanDeDobbeleer/oh-my-posh.git posh-themes
+```
+
 ## Bash
 
 ```
