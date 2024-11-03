@@ -227,6 +227,12 @@ scoop install rust
 cargo --version
 ```
 
+### Lua for Windows
+
+```
+scoop install lua-for-windows
+```
+
 ### LuaRocks
 
 ```
