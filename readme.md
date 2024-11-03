@@ -199,6 +199,12 @@ dotnet --version
 echo $env:DOTNET_ROOT
 ```
 
+### .Net Debugger
+
+```
+scoop install netcoredbg
+```
+
 ### LTeX Language Server
 
 ```
