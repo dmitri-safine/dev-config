@@ -4,8 +4,8 @@ return {
 		local dap = require("dap")
 		dap.adapters.coreclr = {
 			type = "executable",
-			command = vim.fn.expand("~")
-				.. "\\AppData\\Local\\nvim-data\\mason\\packages\\netcoredbg\\netcoredbg\\netcoredbg.exe",
+			command = vim.fn.expand("$LOCALAPPDATA")
+				.. "\\nvim-data\\mason\\packages\\netcoredbg\\netcoredbg\\netcoredbg.exe",
 			args = { "--interpreter=vscode" },
 		}
 
