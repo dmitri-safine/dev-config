@@ -227,6 +227,18 @@ nvim .
 
 Type `:checkhealth` in command mode
 
+## Oh My Posh
+
+```
+curl -s https://ohmyposh.dev/install.sh | bash -s
+```
+
+Add to `~/.bashrc`:
+
+```
+export PATH=$PATH:$HOME/.local/bin
+```
+
 ## Bash
 
 ```
