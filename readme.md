@@ -245,6 +245,30 @@ scoop install luarocks
 luarocks install jsregexp
 ```
 
+### Ruby
+
+```
+scoop install ruby
+```
+
+### Go
+
+```
+scoop install go
+```
+
+### Julia
+
+```
+scoop install julia
+```
+
+### PHP
+
+```
+scoop install php
+```
+
 ## NeoVim
 
 NeoVim is a hyperextensible Vim-based text editor.
