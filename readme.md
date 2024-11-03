@@ -2,80 +2,57 @@
 
 This is my very opinionated dev environment configuration. Proceed at you own risk.
 
-[[_TOC_]]
+# Ubuntu (Windows WSL)
 
-# Windows 10/11
-
-These are instructions for Windows 10/11.
+These are instructions for Ubuntu Linux
 
 ## Pre-Requisites
 
-### Scoop
+### WSL
 
-Scoop provides easy way to install apps on Windows from a command line. Sort of like `apt` or `yum` on Linux, or `brew` on Mac.
+> Skip this step if you are not running Ubuntu Linux on Windows WSL
 
-Run the following commands from a regular (non-admin) PowerShell terminal:
+Enable WSL on Windows by executiing:
+`Command + R / Optional Features + Enable Windows Subsystem for Linux`
 
-```pwsh
-
-Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
-Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
-```
-
-It will install Scoop to its default location:
-
-```pwsh
-C:\Users\<YOUR USERNAME>\scoop
-```
-
-Check the installation:
-
-```pwsh
-scoop help
-```
-
-### PowerShell Core
-
-This installs `pwsh.exe` which is different from Windows Powershell `powershell.exe` installed by default and it works much better.
-
-```pwsh
-scoop install pwsh
-```
-
-Now you can launch it with `[CMD] + r / pwsh` or pin it to your taskbar
-
-### Nerd Fonts
-
-Nerd Fonts add special icons to PowerShell and allow it to be used as an IDE.
+Install Ubuntu 22.04 WSL
 
 ```
-scoop bucket add nerd-fonts
-scoop install Cousine-NF-Mono
+wsl --install Ubuntu-22.04
 ```
 
-#### Change PowerShell Font Settings
-
-Open PowerShell in admin mode, then click on down arrow next to `+` sign, go to `Settings` -> `PowerShell` -> `Appearance` -> `Text` -> `Font Face` and change it to `Cousine Nerd Font Mono`.
-
-Reopen PowerShell in normal (non-admin) mode and verify that this setting persists.
-
-### Git
+Make Ubuntu default WSL distribution
 
 ```
-scoop install git
+wsl --set-default Ubuntu-22.04
+```
+
+Remove Windows environment variables from Linux `$PATH`, by adding the following line to the `/etc/wsl.conf`:
+
+```
+[interop]
+appendWindowsPath = false
+```
+
+Launch WSL:
+
+```
+wsl
 ```
 
 ### Python
 
+Check that python3 is installed
+
 ```
-scoop install python
-python --version
+python3 --version
+
 ```
 
 ### NodeJS
 
 ```
-scoop install nodejs
+sudo apt install nodejs
 node --version
 npm --version
 
@@ -84,189 +61,135 @@ npm --version
 ### UnZip
 
 ```
-scoop install unzip
-```
-
-### Wget
-
-```
-scoop install wget
-```
-
-### GZip
-
-```
-scoop install gzip
+sudo apt install unzip
 ```
 
 ### FD
 
 ```
-scoop install fd
+sudo apt install fdclone
 ```
 
 ### GCC
 
 ```
-scoop install gcc
-```
-
-### Mingw
-
-```
-scoop install mingw
+sudo apt install gcc
 ```
 
 ### Make
 
 ```
-scoop install make
+sudo apt install make
 ```
 
 ### FZF
 
 ```
-scoop install fzf
-```
-
-### Grep
-
-```
-scoop install grep
+sudo apt install fzf
 ```
 
 ### RipGrep
 
 ```
-scoop install ripgrep
-```
-
-### Ln
-
-```
-scoop install ln
+sudo apt install ripgrep
 ```
 
 ### Sox
 
 ```
-scoop install sox
+sudo apt install sox
+sudo apt install libsox-fmt-mp3
 ```
 
 ### NVM
 
+Check for the [most recent version](https://github.com/nvm-sh/nvm?tab=readme-ov-file#installing-and-updating) and update the URL below if needed
+
 ```
-scoop install nvm
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+source ~/.bashrc
+nvm --version
 ```
 
 ### JDK
 
-Download specific version of JDK from [https://jdk.java.net/archive/](https://jdk.java.net/archive/). For example, `jdk-21`
-
-Unzip `jdk-21` to `C:\Users\<YOUR USERNAME>\AppData\Local\Programs`
-
-#### Create environment variables
-
-1. Click `Windows + R` and then type `sysdm.cpl` and press `Ok`
-2. Go to `Advanced` -> `Environment Variables`
-3. Add `C:\Users\<YOUR USERNAME>\AppData\Local\Programs\jdk-21\bin` value to `Path` environment variable in `User Variables`
-4. Create new environment variable `JAVA_HOME` with value `C:\Users\<YOUR USERNAME>\AppData\Local\Programs\jdk-21`
-5. Verify JDK installation
+Check for the exact version of JDK you need, or install the latest one
 
 ```
-java --version
-echo $env:JAVA_HOME
-```
-
-### .Net
-
-```
-wget https://dot.net/v1/dotnet-install.ps1
-./dotnet-install.ps1
-
-```
-
-#### Create environment variables
-
-1. Click `Windows + R` and then type `sysdm.cpl` and press `Ok`
-2. Go to `Advanced` -> `Environment Variables`
-3. Add `C:\Users\<YOUR USERNAME>\AppData\Local\Microsoft\dotnet` value to `Path` environment variable in `User Variables`
-4. Create new environment variable `DOTNET_ROOT` with value `C:\Users\<YOUR USERNAME>\AppData\Local\Microsoft\dotnet`
-5. Verify .Net installation
-
-```
-dotnet --version
-echo $env:DOTNET_ROOT
-```
-
-### .Net Debugger
-
-```
-scoop install netcoredbg
+sudo apt install openjdk-21-jdk-headless
 ```
 
 ### LTeX Language Server
 
 ```
-wget https://github.com/valentjn/ltex-ls/releases/download/16.0.0/ltex-ls-16.0.0-windows-x64.zip
-unzip .\ltex-ls-16.0.0-windows-x64.zip -d C:\Users\<YOUR USERNAME>\AppData\Local\ltex-ls
+wget https://github.com/valentjn/ltex-ls/releases/download/16.0.0/ltex-ls-16.0.0-linux-x64.tar.gz
+sudo tar xzvf ltex-ls-16.0.0-linux-x64.tar.gz -C /opt
+rm ltex-ls-16.0.0-linux-x64.tar.gz
 ```
 
-Add `C:\Users\<YOUR USERNAME>\AppData\Local\ltex-ls\ltex-ls-16.0.0\bin` to `PATH` environment variable.
+Add `/opt/ltex-ls-16.0.0/bin` to `$PATH` environment variable in `~/.bashrc`
 
 Verify installation:
 
 ```
+source ~/.bashrc
 ltex-ls --version
 ```
 
 ### Rust
 
 ```
-scoop install rust
+curl --proto '=https' --tlsv1.3 https://sh.rustup.rs -sSf | sh
+source $HOME/.cargo/env
 cargo --version
 ```
 
-### Lua for Windows
+### Lua
 
 ```
-scoop install lua-for-windows
+sudo apt install lua5.1
 ```
 
 ### LuaRocks
 
 ```
-scoop install luarocks
+sudo apt install luarocks
 ```
 
 ### JsRegExp
 
 ```
-luarocks install jsregexp
+sudo luarocks install jsregexp
 ```
 
 ### Ruby
 
 ```
-scoop install ruby
+sudo apt install ruby
 ```
 
 ### Go
 
 ```
-scoop install go
+sudo apt install golang-go
 ```
 
 ### Julia
 
 ```
-scoop install julia
+sudo snap install julia --classic
 ```
 
 ### PHP
 
 ```
-scoop install php
+sudo apt install php8.3-cli
+```
+
+### PIP
+
+```
+sudo apt install python3-pip
 ```
 
 ## NeoVim
@@ -274,26 +197,26 @@ scoop install php
 NeoVim is a hyperextensible Vim-based text editor.
 
 ```
-scoop install neovim
+sudo snap install nvim --classic
 nvim --version
 ```
 
 ### Node Client
 
 ```
-npm install -g neovim
+sudo npm install -g neovim
 ```
 
 ### Python Client
 
 ```
-pip install pynvim
+sudo apt install python3-pynvim
 ```
 
 ### Copy NeoVim Configuration
 
 ```
-cp -r nvim ~\AppData\Local
+cp -r nvim ~/.config/
 ```
 
 ### Launch and Check
@@ -303,31 +226,6 @@ nvim .
 ```
 
 Type `:checkhealth` in command mode
-
-## WezTerm
-
-Install WezTerm from [https://wezfurlong.org/wezterm/installation.html](https://wezfurlong.org/wezterm/installation.html)
-
-Copy `.wezterm.lua` file into the home directory
-
-```
-cp wezterm\.wezterm.lua ~
-```
-
-## PowerShell
-
-### Install required Modules
-
-```
-Install-Module -Name Terminal-Icons
-Install-Module -Name PSFzf
-```
-
-Copy content of `powershell/Microsoft.PowerShell_profile.ps1` to the file pointed to `$PROFILE` environment variable
-
-```
-nvim $PROFILE
-```
 
 ## Bash
 

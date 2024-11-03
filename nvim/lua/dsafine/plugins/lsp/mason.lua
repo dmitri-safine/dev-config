@@ -15,6 +15,9 @@ return {
 
 		-- enable mason and configure icons
 		mason.setup({
+			pip = {
+				upgrade_pip = true,
+			},
 			ui = {
 				icons = {
 					package_installed = "✓",
@@ -40,7 +43,6 @@ return {
 				"pyright",
 				"rust_analyzer",
 				"ltex",
-				"csharp_ls",
 			},
 			-- auto-install configured servers (with lspconfig)
 			automatic_installation = true, -- not the same as ensure_installed
@@ -50,12 +52,7 @@ return {
 			ensure_installed = {
 				"prettier", -- prettier formatter
 				"stylua", -- lua formatter
-				"isort", -- python formatter
-				"black", -- python formatter
-				"pylint", -- python linter
 				"eslint_d", -- js linter
-				"csharpier", -- c# formatter
-				"netcoredbg", -- CLR debugger
 			},
 		})
 		vim.g.loaded_perl_provider = 0
