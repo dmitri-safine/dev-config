@@ -338,3 +338,22 @@ vim .bashrc
 ```
 
 Add content of the `bash/.bashrc` to the `~/.bashrc` file
+
+## Jupynium Plugin
+
+Plugin for working with Jupyter notebooks from NeoVim
+
+1. Install Firefox (only works with Firefox)
+2. Install Gecko driver
+
+```
+scoop install geckodriver
+```
+
+3. Install required Python packages
+
+```
+pip install notebook nbclassic jupyter-console
+```
+
+Check the [readme](https://github.com/kiyoon/jupynium.nvim) for any additional information
