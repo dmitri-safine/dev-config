@@ -34,6 +34,13 @@ Check the installation:
 scoop help
 ```
 
+#### 7-zip troubleshooting
+Many scoop packages are archived with 7zip, which could be blocked in corporate environments. There is a possibility of using external 7zip installation. Just install 7zip through the company portal and then use the following command to configure scoop to use external 7zip:
+
+```
+scoop config 'USE_EXTERNAL_7ZIP' $true
+```
+
 ### PowerShell Core
 
 This installs `pwsh.exe` which is different from Windows Powershell `powershell.exe` installed by default and it works much better.
