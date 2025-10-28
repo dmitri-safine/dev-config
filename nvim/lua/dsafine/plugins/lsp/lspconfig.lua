@@ -7,7 +7,7 @@ return {
 	},
 	config = function()
 		-- import lspconfig plugin
-		local lspconfig = require("lspconfig")
+		local lspconfig = vim.lsp.config -- require("lspconfig")
 
 		-- import cmp-nvim-lsp plugin
 		local cmp_nvim_lsp = require("cmp_nvim_lsp")
@@ -71,31 +71,31 @@ return {
 		end
 
 		-- configure html server
-		lspconfig["html"].setup({
+		lspconfig("html", {
 			capabilities = capabilities,
 			on_attach = on_attach,
 		})
 
 		-- configure typescript server with plugin
-		lspconfig["ts_ls"].setup({
+		lspconfig("ts_ls", {
 			capabilities = capabilities,
 			on_attach = on_attach,
 		})
 
 		-- configure css server
-		lspconfig["cssls"].setup({
+		lspconfig("cssls", {
 			capabilities = capabilities,
 			on_attach = on_attach,
 		})
 
 		-- configure tailwindcss server
-		lspconfig["tailwindcss"].setup({
+		lspconfig("tailwindcss", {
 			capabilities = capabilities,
 			on_attach = on_attach,
 		})
 
 		-- configure svelte server
-		lspconfig["svelte"].setup({
+		lspconfig("svelte", {
 			capabilities = capabilities,
 			on_attach = function(client, bufnr)
 				on_attach(client, bufnr)
@@ -112,39 +112,39 @@ return {
 		})
 
 		-- configure prisma orm server
-		lspconfig["prismals"].setup({
+		lspconfig("prismals", {
 			capabilities = capabilities,
 			on_attach = on_attach,
 		})
 
 		-- configure cypher server
-		lspconfig["cypher_ls"].setup({
+		lspconfig("cypher_ls", {
 			capabilities = capabilities,
 			on_attach = on_attach,
 		})
 
 		-- configure graphql language server
-		lspconfig["graphql"].setup({
+		lspconfig("graphql", {
 			capabilities = capabilities,
 			on_attach = on_attach,
 			filetypes = { "graphql", "gql", "svelte", "typescriptreact", "javascriptreact" },
 		})
 
 		-- configure emmet language server
-		lspconfig["emmet_ls"].setup({
+		lspconfig("emmet_ls", {
 			capabilities = capabilities,
 			on_attach = on_attach,
 			filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" },
 		})
 
 		-- configure python server
-		lspconfig["pyright"].setup({
+		lspconfig("pyright", {
 			capabilities = capabilities,
 			on_attach = on_attach,
 		})
 
 		-- configure lua server (with special settings)
-		lspconfig["lua_ls"].setup({
+		lspconfig("lua_ls", {
 			capabilities = capabilities,
 			on_attach = on_attach,
 			settings = { -- custom settings for lua
@@ -165,14 +165,14 @@ return {
 		})
 
 		-- configure LTex Language Server
-		lspconfig["ltex"].setup({
+		lspconfig("ltex", {
 			capabilities = capabilities,
 			on_attach = on_attach,
 			cmd = { "ltex-ls.cmd" },
 		})
 
 		-- configure rust analyzer
-		lspconfig.rust_analyzer.setup({
+		lspconfig("rust_analyzer", {
 			capabilities = capabilities,
 			on_attach = on_attach,
 		})
