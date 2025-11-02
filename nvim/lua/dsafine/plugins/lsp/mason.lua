@@ -40,7 +40,6 @@ return {
 				"pyright",
 				"rust_analyzer",
 				"ltex",
-				"csharp_ls",
 			},
 			-- auto-install configured servers (with lspconfig)
 			automatic_installation = true, -- not the same as ensure_installed
@@ -54,10 +53,10 @@ return {
 				"black", -- python formatter
 				"pylint", -- python linter
 				"eslint_d", -- js linter
-				"csharpier", -- c# formatter
-				"netcoredbg", -- CLR debugger
 			},
 		})
 		vim.g.loaded_perl_provider = 0
+		vim.g.loaded_python3_provider = 0
+		vim.g.loaded_ruby_provider = 0
 	end,
 }

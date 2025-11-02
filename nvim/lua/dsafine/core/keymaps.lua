@@ -36,3 +36,7 @@ keymap.set("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "Close current tab" 
 keymap.set("n", "<leader>tn", "<cmd>tabn<CR>", { desc = "Go to next tab" }) --  go to next tab
 keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Go to previous tab" }) --  go to previous tab
 keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" }) --  move current buffer to new tab
+
+-- indent selection management
+keymap.set("x", "<leader>i", ">gv", { noremap = true, silent = true, desc = "indent selection (leader+i)" })
+keymap.set("x", "<leader>u", "<gv", { noremap = true, silent = true, desc = "unindent selection (leader+u)" })

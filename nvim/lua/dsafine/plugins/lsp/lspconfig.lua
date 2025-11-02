@@ -6,9 +6,6 @@ return {
 		{ "antosha417/nvim-lsp-file-operations", config = true },
 	},
 	config = function()
-		-- import lspconfig plugin
-		local lspconfig = vim.lsp.config -- require("lspconfig")
-
 		-- import cmp-nvim-lsp plugin
 		local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
@@ -62,6 +59,83 @@ return {
 		-- used to enable autocompletion (assign to every lsp server config)
 		local capabilities = cmp_nvim_lsp.default_capabilities()
 
+		local servers = {
+			"html",
+			"ts_ls",
+			"cssls",
+			"emmet_ls",
+			"lua_ls",
+			"pyright",
+			"svelte",
+			"tailwindcss",
+			"prismals",
+			"cypher_ls",
+			"graphql",
+			"ltex",
+			"rust_analyzer",
+		}
+
+		local custom_configs = {
+			emmet_ls = {
+				filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" },
+			},
+			graphql = {
+				filetypes = { "graphql", "gql", "svelte", "typescriptreact", "javascriptreact" },
+			},
+			svelte = {
+				on_attach = function(client, bufnr)
+					on_attach(client, bufnr)
+
+					vim.api.nvim_create_autocmd("BufWritePost", {
+						pattern = { "*.js", "*.ts" },
+						callback = function(ctx)
+							if client.name == "svelte" then
+								client.notify("$/onDidChangeTsOrJsFile", { uri = ctx.file })
+							end
+						end,
+					})
+				end,
+			},
+			lua_ls = {
+				settings = { -- custom settings for lua
+					Lua = {
+						-- make the language server recognize "vim" global
+						diagnostics = {
+							globals = { "vim" },
+						},
+						workspace = {
+							-- make language server aware of runtime files
+							library = {
+								[vim.fn.expand("$VIMRUNTIME/lua")] = true,
+								[vim.fn.stdpath("config") .. "/lua"] = true,
+							},
+						},
+					},
+				},
+			},
+			ltex = {
+				cmd = { "ltex-ls.cmd" },
+			},
+		}
+
+		for _, server in ipairs(servers) do
+			local opts = {
+				capabilities = capabilities,
+				on_attach = on_attach,
+			}
+
+			if custom_configs[server] then
+				opts = vim.tbl_deep_extend("force", opts, custom_configs[server])
+			end
+
+			local ok, _ = pcall(vim.lsp.config, server, opts)
+			if ok then
+				vim.lsp.enable(server)
+			else
+				vim.notify("lsp setup failed: " .. server, vim.log.levels.warn)
+			end
+		end
+
 		vim.diagnostic.config({
 			signs = {
 				text = {
@@ -77,113 +151,6 @@ return {
 					[vim.diagnostic.severity.HINT] = "Hint",
 				},
 			},
-		})
-
-		-- configure html server
-		lspconfig("html", {
-			capabilities = capabilities,
-			on_attach = on_attach,
-		})
-
-		-- configure typescript server with plugin
-		lspconfig("ts_ls", {
-			capabilities = capabilities,
-			on_attach = on_attach,
-		})
-
-		-- configure css server
-		lspconfig("cssls", {
-			capabilities = capabilities,
-			on_attach = on_attach,
-		})
-
-		-- configure tailwindcss server
-		lspconfig("tailwindcss", {
-			capabilities = capabilities,
-			on_attach = on_attach,
-		})
-
-		-- configure svelte server
-		lspconfig("svelte", {
-			capabilities = capabilities,
-			on_attach = function(client, bufnr)
-				on_attach(client, bufnr)
-
-				vim.api.nvim_create_autocmd("BufWritePost", {
-					pattern = { "*.js", "*.ts" },
-					callback = function(ctx)
-						if client.name == "svelte" then
-							client.notify("$/onDidChangeTsOrJsFile", { uri = ctx.file })
-						end
-					end,
-				})
-			end,
-		})
-
-		-- configure prisma orm server
-		lspconfig("prismals", {
-			capabilities = capabilities,
-			on_attach = on_attach,
-		})
-
-		-- configure cypher server
-		lspconfig("cypher_ls", {
-			capabilities = capabilities,
-			on_attach = on_attach,
-		})
-
-		-- configure graphql language server
-		lspconfig("graphql", {
-			capabilities = capabilities,
-			on_attach = on_attach,
-			filetypes = { "graphql", "gql", "svelte", "typescriptreact", "javascriptreact" },
-		})
-
-		-- configure emmet language server
-		lspconfig("emmet_ls", {
-			capabilities = capabilities,
-			on_attach = on_attach,
-			filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" },
-		})
-
-		-- configure python server
-		lspconfig("pyright", {
-			capabilities = capabilities,
-			on_attach = on_attach,
-		})
-
-		-- configure lua server (with special settings)
-		lspconfig("lua_ls", {
-			capabilities = capabilities,
-			on_attach = on_attach,
-			settings = { -- custom settings for lua
-				Lua = {
-					-- make the language server recognize "vim" global
-					diagnostics = {
-						globals = { "vim" },
-					},
-					workspace = {
-						-- make language server aware of runtime files
-						library = {
-							[vim.fn.expand("$VIMRUNTIME/lua")] = true,
-							[vim.fn.stdpath("config") .. "/lua"] = true,
-						},
-					},
-				},
-			},
-		})
-
-		-- configure LTex Language Server
-		lspconfig("ltex", {
-			capabilities = capabilities,
-			on_attach = on_attach,
-			cmd = { "ltex-ls.cmd" },
-		})
-
-		-- configure rust analyzer
-		lspconfig("rust_analyzer", {
-			capabilities = capabilities,
-			on_attach = on_attach,
 		})
 	end,
 }
