@@ -35,6 +35,7 @@ scoop help
 ```
 
 #### 7-zip troubleshooting
+
 Many scoop packages are archived with 7zip, which could be blocked in corporate environments. There is a possibility of using external 7zip installation. Just install 7zip through the company portal and then use the following command to configure scoop to use external 7zip:
 
 ```
@@ -185,33 +186,6 @@ java --version
 echo $env:JAVA_HOME
 ```
 
-### .Net
-
-```
-wget https://dot.net/v1/dotnet-install.ps1
-./dotnet-install.ps1
-
-```
-
-#### Create environment variables
-
-1. Click `Windows + R` and then type `sysdm.cpl` and press `Ok`
-2. Go to `Advanced` -> `Environment Variables`
-3. Add `C:\Users\<YOUR USERNAME>\AppData\Local\Microsoft\dotnet` value to `Path` environment variable in `User Variables`
-4. Create new environment variable `DOTNET_ROOT` with value `C:\Users\<YOUR USERNAME>\AppData\Local\Microsoft\dotnet`
-5. Verify .Net installation
-
-```
-dotnet --version
-echo $env:DOTNET_ROOT
-```
-
-### .Net Debugger
-
-```
-scoop install netcoredbg
-```
-
 ### LTeX Language Server
 
 ```
@@ -313,12 +287,15 @@ Type `:checkhealth` in command mode
 
 ## WezTerm
 
-Install WezTerm from [https://wezfurlong.org/wezterm/installation.html](https://wezfurlong.org/wezterm/installation.html)
+```
+scoop bucket add extras
+scoop install wezterm
+```
 
-Copy `.wezterm.lua` file into the home directory
+Copy configuration
 
 ```
-cp wezterm\.wezterm.lua ~
+cp -r wezterm ~/.config
 ```
 
 ## PowerShell
