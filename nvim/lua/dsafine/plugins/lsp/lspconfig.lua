@@ -60,19 +60,19 @@ return {
 		local capabilities = cmp_nvim_lsp.default_capabilities()
 
 		local servers = {
-			"html",
-			"ts_ls",
-			"cssls",
-			"emmet_ls",
+			--"html",
+			--"ts_ls",
+			--"cssls",
+			--"emmet_ls",
 			"lua_ls",
 			"pyright",
-			"svelte",
-			"tailwindcss",
-			"prismals",
-			"cypher_ls",
-			"graphql",
+			--"svelte",
+			--"tailwindcss",
+			--"prismals",
+			--"cypher_ls",
+			--"graphql",
 			"ltex",
-			"rust_analyzer",
+			--"rust_analyzer",
 		}
 
 		local custom_configs = {

@@ -1,6 +1,3 @@
-# Imports the terminal Icons into curernt Instance of PowerShell
-Import-Module -Name Terminal-Icons 
-
 # Initialize Oh My Posh with the theme which we chosen
 oh-my-posh init pwsh --config "https://raw.githubusercontent.com/dmitri-safine/dev-config/refs/heads/main/oh-my-posh/dsafine.omp.json" | Invoke-Expression
 
