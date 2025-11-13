@@ -80,6 +80,13 @@ scoop install python
 python --version
 ```
 
+### PipX
+
+```
+scoop install pipx
+pipx ensurepath
+```
+
 ### NodeJS
 
 ```
