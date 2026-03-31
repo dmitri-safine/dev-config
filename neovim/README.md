@@ -12,7 +12,7 @@ Part of [dev-config](https://github.com/dev-config).
 | Neovim | `scoop install neovim` | v0.11+ recommended |
 | Python 3 | `scoop install python` | Required for pyright, ruff |
 | CMake | `scoop install cmake` | Required to build telescope-fzf-native |
-| C compiler | Visual Studio Build Tools or MinGW | Required by CMake for telescope-fzf-native |
+| MinGW | `scoop install mingw` | C compiler required by CMake for telescope-fzf-native |
 | Git | `scoop install git` | |
 | ripgrep | `scoop install ripgrep` | Required for Telescope live_grep |
 
@@ -51,6 +51,17 @@ New-Item -ItemType SymbolicLink -Path "$env:LOCALAPPDATA\nvim" -Target "$env:USE
 
 Open Neovim. Lazy.nvim will auto-install all plugins on first run.
 If telescope-fzf-native fails to build, run `:Lazy build telescope-fzf-native.nvim`.
+
+### Troubleshooting telescope-fzf-native on Windows
+
+If you get an error about `CMAKE_C_COMPILER` not being set:
+
+1. Ensure MinGW is installed: `scoop install mingw`
+2. Verify gcc is in PATH: `gcc --version`
+3. Verify make is available: `mingw32-make --version`
+4. Rebuild the plugin in Neovim: `:Lazy build telescope-fzf-native.nvim`
+
+The build command uses MinGW Makefiles generator to avoid issues with Visual Studio detection.
 
 ## Cross-Platform Notes
 
