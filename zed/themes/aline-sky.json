@@ -1,0 +1,45 @@
+{
+    "$schema": "https://zed.dev/schema/themes/v0.1.0.json",
+    "name": "Aline Sky Family",
+    "author": "Personal Development Environment",
+
+    "themes": [
+        {
+            "name": "Aline Sky",
+            "appearance": "dark",
+
+            "style": {
+                "background": "#1E1F29",
+                "text": "#E5D9F2",
+
+                "editor.background": "#1E1F29",
+                "editor.foreground": "#E5D9F2",
+                "editor.line_number": "#6A6E88",
+                "editor.active_line_number": "#C3C7F7",
+                "editor.selection.background": "#3F3F4A",
+                "editor.cursor": "#A8E6CF",
+
+                "terminal.background": "#1E1F29",
+                "terminal.foreground": "#E5D9F2",
+
+                "terminal.ansi.black": "#1E1F29",
+                "terminal.ansi.red": "#FFD6E0",
+                "terminal.ansi.green": "#A8E6CF",
+                "terminal.ansi.yellow": "#F2E9E4",
+                "terminal.ansi.blue": "#6A8CDF",
+                "terminal.ansi.magenta": "#DDBDD5",
+                "terminal.ansi.cyan": "#C3C7F7",
+                "terminal.ansi.white": "#E5D9F2",
+
+                "terminal.ansi.bright_black": "#2A2B36",
+                "terminal.ansi.bright_red": "#FFB6C1",
+                "terminal.ansi.bright_green": "#B9F3DA",
+                "terminal.ansi.bright_yellow": "#FFF0E2",
+                "terminal.ansi.bright_blue": "#88A8FF",
+                "terminal.ansi.bright_magenta": "#ECC8E8",
+                "terminal.ansi.bright_cyan": "#D8DBFF",
+                "terminal.ansi.bright_white": "#FFFFFF"
+            }
+        }
+    ]
+}

@@ -1,0 +1,122 @@
+# ======================================================
+# Starship Configuration — Personal Development Environment
+# Color palette: Aline Sky (matches wezterm)
+# ======================================================
+
+format = """
+$env_var$shell\
+$directory\
+$git_branch\
+$git_status\
+$rust\
+$python\
+$lua\
+$nodejs\
+$cmd_duration\
+$line_break\
+$character\
+"""
+
+# ──────────────────────────────────────────────
+#  Environment Detection
+# ──────────────────────────────────────────────
+
+# WSL: penguin when WSL_DISTRO_NAME is set
+[env_var.WSL_DISTRO_NAME]
+format = "🐧 "
+
+# Git Bash: window when MSYSTEM is set
+[env_var.MSYSTEM]
+format = "🪟 "
+
+# Shell indicator — for PowerShell and CMD (no env_var needed)
+[shell]
+disabled = false
+bash_indicator = ""
+zsh_indicator = ""
+powershell_indicator = "⚡"
+cmd_indicator = "📟"
+format = "$indicator "
+
+[os]
+disabled = true
+
+# ──────────────────────────────────────────────
+#  Core Modules
+# ──────────────────────────────────────────────
+
+# Directory
+[directory]
+style = "bold #C3C7F7"
+truncation_length = 3
+truncation_symbol = "…/"
+read_only = " 󰌾"
+read_only_style = "bold #FFD6E0"
+format = "[$read_only]($read_only_style)[$path]($style) "
+
+# Prompt character
+[character]
+success_symbol = "[❯](#A8E6CF)"
+error_symbol = "[❯](#FFD6E0)"
+vimcmd_symbol = "[❮](#6A8CDF)"
+
+# ──────────────────────────────────────────────
+#  Git
+# ──────────────────────────────────────────────
+
+[git_branch]
+symbol = " "
+style = "bold #f8bd96"
+format = "[$symbol$branch(:$remote_branch)]($style) "
+
+[git_status]
+style = "bold #FFD6E0"
+format = '([$all_status$ahead_behind]($style) )'
+ahead = "⇡${count}"
+behind = "⇣${count}"
+diverged = "⇕⇡${ahead_count}⇣${behind_count}"
+conflicted = "=${count}"
+deleted = "✘${count}"
+modified = "!${count}"
+staged = "+${count}"
+untracked = "?${count}"
+stashed = "*${count}"
+renamed = "»${count}"
+
+# ──────────────────────────────────────────────
+#  Languages (show only when relevant)
+# ──────────────────────────────────────────────
+
+[rust]
+symbol = "🦀 "
+style = "bold #FFB6C1"
+format = "[$symbol($version)]($style) "
+
+[python]
+symbol = " "
+style = "bold #F2E9E4"
+format = '[${symbol}(${version})(\($virtualenv\))]($style) '
+
+[lua]
+symbol = " "
+style = "bold #6A8CDF"
+format = "[$symbol($version)]($style) "
+
+[nodejs]
+symbol = "󰎙 "
+style = "bold #A8E6CF"
+format = "[$symbol($version)]($style) "
+
+# ──────────────────────────────────────────────
+#  Extras
+# ──────────────────────────────────────────────
+
+[cmd_duration]
+min_time = 2_000
+style = "bold #3F3F4A"
+format = "[took $duration]($style) "
+
+[time]
+disabled = true
+format = "[$time]($style) "
+style = "#3F3F4A"
