@@ -31,7 +31,7 @@ dev-config/
 
 **Windows (via scoop):**
 ```bash
-scoop install git neovim starship
+scoop install git neovim starship gh
 scoop bucket add nerd-fonts
 scoop install Cousine-NF-Mono
 ```
