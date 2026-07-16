@@ -29,6 +29,33 @@ return {
         local lazy_status = require("lazy.status") -- to configure lazy pending updates count
         local prose = require("nvim-prose")
 
+        -- Keyboard layout indicator: reads the file written by autohotkey/lang-switch.ahk.
+        -- Path resolved once: native Windows uses %LOCALAPPDATA%; WSL maps it via wslpath.
+        local kb_layout_file = (function()
+            if vim.fn.has("win32") == 1 then
+                local lad = os.getenv("LOCALAPPDATA")
+                return lad and (lad .. "\\kb-layout") or nil
+            elseif vim.fn.has("wsl") == 1 then
+                local win = (vim.fn.system({ "cmd.exe", "/c", "echo %LOCALAPPDATA%" }) or ""):gsub("[\r\n]+$", "")
+                if win == "" then return nil end
+                local p = (vim.fn.system({ "wslpath", win }) or ""):gsub("[\r\n]+$", "")
+                return p ~= "" and (p .. "/kb-layout") or nil
+            end
+            return nil
+        end)()
+
+        local function kb_layout()
+            if not kb_layout_file then return "" end
+            local f = io.open(kb_layout_file, "r")
+            if not f then return "" end
+            local s = f:read("*a") -- "*a" for LuaJIT (Lua 5.1) compatibility
+            f:close()
+            if not s then return "" end
+            s = s:gsub("%s+", "")
+            if s == "" then return "" end
+            return " " .. s
+        end
+
         local colors = {
             blue = "#65D1FF",
             green = "#3EFFDC",
@@ -77,9 +104,11 @@ return {
         lualine.setup({
             options = {
                 theme = my_lualine_theme,
+                refresh = { statusline = 500 },
             },
             sections = {
                 lualine_x = {
+                    { kb_layout },
                     { prose.word_count,   cond = prose.is_available },
                     { prose.reading_time, cond = prose.is_available },
                     {

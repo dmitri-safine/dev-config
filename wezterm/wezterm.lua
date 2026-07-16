@@ -171,6 +171,27 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, conf, hover, max_width
 end)
 
 -- ============================================
+--  Right status: current keyboard layout
+--  Reads %LOCALAPPDATA%\kb-layout (written by autohotkey/lang-switch.ahk)
+-- ============================================
+wezterm.on("update-status", function(window, pane)
+    local layout = ""
+    local f = io.open(wezterm.home_dir .. "\\AppData\\Local\\kb-layout", "r")
+    if f then
+        layout = (f:read("*a") or ""):gsub("%s+", "")
+        f:close()
+    end
+    if layout ~= "" then
+        window:set_right_status(wezterm.format({
+            { Foreground = { Color = "#A8E6CF" } },
+            { Text = " " .. layout .. " " },
+        }))
+    else
+        window:set_right_status("")
+    end
+end)
+
+-- ============================================
 --  Keybindings
 -- ============================================
 config.keys = {
