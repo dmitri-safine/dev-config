@@ -32,6 +32,10 @@ ToggleEnRu() {
         SetLayout(RU)
 }
 
+; NOTE: Windows does not reliably refresh the taskbar language indicator when the
+; layout is changed programmatically (a known WM_INPUTLANGCHANGEREQUEST quirk).
+; Typing is always correct; only the tray glyph may lag. The current layout is
+; surfaced in the terminal/editor status line instead (see wezterm/neovim configs).
 SetLayout(klid) {
     hkl := DllCall("LoadKeyboardLayout", "Str", klid, "UInt", 1, "Ptr")
     hwnd := WinExist("A")
