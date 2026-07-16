@@ -30,6 +30,12 @@ Double-click `lang-switch.ahk`, or run it directly:
 
 Put a shortcut to `lang-switch.ahk` in `shell:startup`.
 
+### Status line indicator
+
+On every switch the current layout (`EN` / `RU` / `PT`) is written to
+`%LOCALAPPDATA%\kb-layout`. WezTerm and Neovim read this file and show the active
+layout in their status line, so the Windows tray indicator becomes optional.
+
 ### Notes
 
 - If Portuguese does not switch, set `PT` to `00010416` (ABNT2) in the script.
