@@ -31,7 +31,7 @@ dev-config/
 
 **Windows (via scoop):**
 ```bash
-scoop install git neovim starship
+scoop install git neovim starship gh
 scoop bucket add nerd-fonts
 scoop install Cousine-NF-Mono
 ```
@@ -125,6 +125,12 @@ Minimal profile: starship init + PSReadLine colors matched to Aline Sky palette.
 ### Neovim (`neovim/`)
 
 Full cross-platform Lua configuration. See `neovim/README.md` for details.
+
+### AutoHotkey (`autohotkey/`)
+
+Windows keyboard utilities. `lang-switch.ahk` keeps English/Russian on a single
+key (`CapsLock`) and moves the Portuguese layout to a separate hotkey
+(`Ctrl+Shift+P`). See `autohotkey/readme.md`.
 
 ---
 
