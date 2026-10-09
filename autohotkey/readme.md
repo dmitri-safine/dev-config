@@ -11,7 +11,7 @@ wrong language.
 | Hotkey | Action |
 | --- | --- |
 | `CapsLock` | Toggle English <-> Russian |
-| `Ctrl+Shift+P` | Switch to Portuguese (Brazil) |
+| `Ctrl+Shift+P` | Switch to United States-International (Portuguese accents via dead keys) |
 | `Shift+CapsLock` | Normal Caps Lock |
 
 ### Requirements
@@ -38,5 +38,7 @@ layout in their status line, so the Windows tray indicator becomes optional.
 
 ### Notes
 
-- If Portuguese does not switch, set `PT` to `00010416` (ABNT2) in the script.
+- The `PT` slot uses `00020409` (United States-International) so Portuguese accents
+  are typed via dead keys on a US keyboard. Prefer the Brazilian ABNT2 physical
+  layout instead? Set `PT` to `00010416` (or `00000416`).
 - Prefer a combo over CapsLock? See the commented alternatives at the top of the script.

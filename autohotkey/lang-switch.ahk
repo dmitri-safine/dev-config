@@ -20,7 +20,7 @@
 ; --- Keyboard layout identifiers (KLID) ---
 EN := "00000409"   ; English (US)
 RU := "00000419"   ; Russian
-PT := "00000416"   ; Portuguese (Brazil). Not switching? Try "00010416" (ABNT2)
+PT := "00020409"   ; United States-International (type Portuguese accents via dead keys on a US keyboard)
 
 ; --- Status file shared with terminal/editor indicators ---
 LayoutFile := EnvGet("LOCALAPPDATA") . "\kb-layout"
